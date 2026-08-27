@@ -34,7 +34,7 @@ sed -i '/CONFIG_CCACHE/d' .config
 if [[ "${2}" == "true" ]]; then
     echo "CONFIG_DEVEL=y" >>.config
     echo "CONFIG_CCACHE=y" >>.config
-    echo 'CONFIG_CCACHE_DIR="$(TOPDIR)/.ccache"' >>.config
+    echo "CONFIG_CCACHE_DIR=\"\$(TOPDIR)/.ccache\"" >>.config
 else
     echo '# CONFIG_DEVEL is not set' >>.config
     echo "# CONFIG_CCACHE is not set" >>.config
