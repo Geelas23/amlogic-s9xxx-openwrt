@@ -1,0 +1,28 @@
+config 'global'
+	option	anon_swap	'0'
+	option	anon_mount	'0'
+	option	auto_swap	'1'
+	option	auto_mount	'1'
+	option	delay_root	'5'
+	option	check_fs	'0'
+
+config 'mount'
+	option	target	'/boot'
+	option	uuid	'CB04-CE7B'
+	option	enabled	'0'
+
+config 'mount'
+	option	target	'/'
+	option	uuid	'21ccf6d6-40e1-4d20-805c-1c2c95dadaba'
+	option	enabled	'0'
+
+config 'mount'
+	option	target	'/mnt/sda3'
+	option	uuid	'f78a9ec3-c8db-4694-be52-5c9f8e54a9f3'
+	option	enabled	'0'
+
+config 'mount'
+	option	target	'/mnt/sda4'
+	option	uuid	'72b9618e-6560-4533-bb03-6b4edc25c1e4'
+	option	enabled	'0'
+
