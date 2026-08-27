@@ -56,3 +56,8 @@ git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
 # ------------------------------- Other ends -------------------------------
+sed -i '/bmx7/d' .config
+sed -i '/babeld/d' .config
+sed -i '/dcwapd/d' .config
+sed -i '/prometheus-node-exporter-lua/d' .config
+sed -i '/kmod-dummy/d' .config
