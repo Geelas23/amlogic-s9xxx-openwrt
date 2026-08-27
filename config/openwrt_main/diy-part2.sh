@@ -30,6 +30,11 @@ echo "DISTRIB_SOURCEBRANCH='main'" >>package/base-files/files/etc/openwrt_releas
 # Remove existing ccache settings
 sed -i '/CONFIG_DEVEL/d' .config
 sed -i '/CONFIG_CCACHE/d' .config
+sed -i '/bmx7/d' .config
+sed -i '/babeld/d' .config
+sed -i '/dcwapd/d' .config
+sed -i '/prometheus-node-exporter-lua/d' .config
+sed -i '/kmod-dummy/d' .config
 # Apply new ccache configuration
 if [[ "${2}" == "true" ]]; then
     echo "CONFIG_DEVEL=y" >>.config
@@ -53,9 +58,3 @@ git clone -b main https://github.com/ophub/luci-app-amlogic.git package/luci-app
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
 # ------------------------------- Additional customizations ends -------------------------------
-# Copot package error biar ga warning
-sed -i '/bmx7/d' .config
-sed -i '/babeld/d' .config
-sed -i '/dcwapd/d' .config
-sed -i '/prometheus-node-exporter-lua/d' .config
-sed -i '/kmod-dummy/d' .config
