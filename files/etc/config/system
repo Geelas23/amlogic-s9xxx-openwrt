@@ -9,6 +9,7 @@ config system
 	option cronloglevel '7'
 	option conloglevel '5'
 	option hostname 'GeeLas'
+    option model 'GeeLas OS B860H'
 	option description 'Otak router'
 	option notes 'GeeLas Router'
 
