@@ -317,7 +317,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - GeeLas
 
 env:
   TZ: Etc/UTC
