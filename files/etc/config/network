@@ -20,10 +20,6 @@ config device 'lan_dev'
 	option name 'eth0.1'
 	option macaddr '02:13:13:11:cb:dd'
 
-config device 'wan_dev'
-	option name 'eth0.2'
-	option macaddr '00:13:13:11:cb:dd'
-
 config switch
 	option name 'switch0'
 	option reset '1'
