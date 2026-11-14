@@ -13,30 +13,26 @@ sed -i 's/CONFIG_PACKAGE_luci-app-dockerman=.*/CONFIG_PACKAGE_luci-app-dockerman
 sed -i '/docker/d' package/base-files/files/etc/config/fstab
 sed -i '/CONFIG_PACKAGE_luci-i18n-dockerman/d' .config
 
-# ===== HAPUS IPV6 TOTAL =====
-sed -i 's/CONFIG_PACKAGE_ipv6=y/# CONFIG_PACKAGE_ipv6 is not set/' .config
-sed -i 's/CONFIG_PACKAGE_kmod-ipv6=y/# CONFIG_PACKAGE_kmod-ipv6 is not set/' .config
-sed -i 's/CONFIG_PACKAGE_odhcp6c=y/# CONFIG_PACKAGE_odhcp6c is not set/' .config
-sed -i 's/CONFIG_PACKAGE_odhcpd-ipv6only=y/# CONFIG_PACKAGE_odhcpd-ipv6only is not set/' .config
-sed -i 's/CONFIG_PACKAGE_luci-proto-ipv6=y/# CONFIG_PACKAGE_luci-proto-ipv6 is not set/' .config
-sed -i 's/CONFIG_PACKAGE_6in4=y/# CONFIG_PACKAGE_6in4 is not set/' .config
-sed -i 's/CONFIG_PACKAGE_6to4=y/# CONFIG_PACKAGE_6to4 is not set/' .config
-sed -i 's/CONFIG_PACKAGE_6rd=y/# CONFIG_PACKAGE_6rd is not set/' .config
-echo "# CONFIG_PACKAGE_dnsmasq_dhcpv6 is not set" >> .config
-echo "# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set" >> .config
-echo "# CONFIG_IPV6 is not set" >> .config
+# --- Nonaktifkan IPv6 di runtime (sysctl) ---
+mkdir -p files/etc/sysctl.d
+cat > files/etc/sysctl.d/99-ipv6off.conf << 'EOF'
+net.ipv6.conf.all.disable_ipv6=1
+net.ipv6.conf.default.disable_ipv6=1
+net.ipv6.conf.lo.disable_ipv6=0
+EOF
 
-# ===== HAPUS LEGACY IPTABLES BIAR GAK MUNCUL WARNING KUNING ITU =====
-sed -i 's/CONFIG_PACKAGE_iptables=y/# CONFIG_PACKAGE_iptables is not set/' .config
-sed -i 's/CONFIG_PACKAGE_ip6tables=y/# CONFIG_PACKAGE_ip6tables is not set/' .config
-sed -i 's/CONFIG_PACKAGE_kmod-ip6tables=y/# CONFIG_PACKAGE_kmod-ip6tables is not set/' .config
-sed -i 's/CONFIG_PACKAGE_kmod-ipt-core=y/# CONFIG_PACKAGE_kmod-ipt-core is not set/' .config
-sed -i 's/CONFIG_PACKAGE_kmod-nf-ipt=y/# CONFIG_PACKAGE_kmod-nf-ipt is not set/' .config
-sed -i 's/CONFIG_PACKAGE_kmod-nf-ipt6=y/# CONFIG_PACKAGE_kmod-nf-ipt6 is not set/' .config
-echo "CONFIG_PACKAGE_firewall4=y" >> .config
-echo "CONFIG_PACKAGE_nftables=y" >> .config
-echo "# CONFIG_PACKAGE_firewall is not set" >> .config
-echo "# CONFIG_PACKAGE_iptables-legacy is not set" >> .config
+# --- Matikan DHCPv6/RA di semua interface ---
+mkdir -p files/etc/hotplug.d/iface
+cat > files/etc/hotplug.d/iface/99-ipv6-off << 'EOF'
+#!/bin/sh
+[ "$ACTION" = "ifup" ] && \
+    uci -q delete dhcp.lan.ra && \
+    uci -q delete dhcp.lan.dhcpv6 && \
+    uci -q delete dhcp.wan.ra && \
+    uci -q delete dhcp.wan.dhcpv6
+EOF
+chmod +x files/etc/hotplug.d/iface/99-ipv6-off
+
 
     # ====== SETTING CCACHE BIAR CEPET ======
     sed -i '/CONFIG_DEVEL/d' .config
