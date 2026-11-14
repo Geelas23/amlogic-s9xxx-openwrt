@@ -200,7 +200,7 @@ rebuild_firmware() {
     echo -e "${STEPS} Building OpenWrt firmware with Image Builder..."
 
     # Selecting default packages, lib, theme, app and i18n, etc.
-   my_packages="\
+  my_packages="\
     acpid attr base-files bash bc blkid block-mount blockd bsdtar btrfs-progs busybox bzip2 \
     cgi-io chattr comgt comgt-ncm coremark coreutils coreutils-base64 coreutils-nohup \
     coreutils-truncate curl dosfstools dumpe2fs e2freefrag e2fsprogs \
@@ -211,6 +211,7 @@ rebuild_firmware() {
     pigz ppp ppp-mod-pppoe pv rename resize2fs tar tini ttyd tune2fs \
     uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch uuidgen wget-ssl whereis \
     which wpad-mesh-openssl wwan xfs-fsck xfs-mkfs xz xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
+    iptables-nft xtables-nft \
     \
     luci-base luci-compat luci-i18n-base-zh-cn luci-lib-base \
     luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
