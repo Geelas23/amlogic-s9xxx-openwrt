@@ -495,11 +495,16 @@ jobs:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             ### OpenWrt Image Information
-            - Default IP: `192.168.0.118`
+            - Default IP: `192.168.1.1`
             - Default username: `root`
             - Default password: `password`
-            ## os kosongan, install sendiri sesuai kebutuhan
+            - Default WIFI name: `OpenWrt`
+            - Default WIFI password: `none`
+            ### Install to EMMC
+            - Login to OpenWrt → `System` → `Amlogic Service` → `Install OpenWrt`
             ### OpenWrt source code
             - [${{ env.REPO_NAME }}](${{ env.REPO_URL }}/tree/${{ env.REPO_BRANCH }})
             ### Applicable Platform
             - 🐧 `arm64`
+            - 🐋 Docker image: https://hub.docker.com/u/ophub
+
