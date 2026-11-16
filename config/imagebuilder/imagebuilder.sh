@@ -218,7 +218,7 @@ rebuild_firmware() {
     luci-mod-status luci-mod-system luci-proto-3g luci-proto-ncm \
     luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
     \
-    luci-i18n-amlogic \
+    luci-app-amlogic \
     \
     ${config_list} \
     "   
