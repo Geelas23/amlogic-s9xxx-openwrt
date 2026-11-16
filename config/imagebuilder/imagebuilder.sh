@@ -213,12 +213,12 @@ rebuild_firmware() {
     which wpad-mesh-openssl wwan xfs-fsck xfs-mkfs xz xz-utils ziptool zoneinfo-asia zoneinfo-core zstd \
     iptables-nft xtables-nft \
     \
-    luci-base luci-compat luci-i18n-base-en luci-lib-base \
+    luci-base luci-compat luci-lib-base \
     luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
     luci-mod-status luci-mod-system luci-proto-3g luci-proto-ncm \
     luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay \
     \
-    luci-i18n-base-en luci-i18n-amlogic-en \
+    luci-i18n-amlogic \
     \
     ${config_list} \
     "   
